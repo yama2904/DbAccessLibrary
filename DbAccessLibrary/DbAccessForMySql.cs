@@ -37,6 +37,22 @@ namespace DbAccessLibrary
         }
 
         /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="address">DBサーバのアドレス</param>
+        /// <param name="port">DBサーバのポート番号</param>
+        /// <param name="database">参照するデータベース</param>
+        /// <param name="id">ユーザID</param>
+        /// <param name="password">パスワード</param>
+        /// <param name="timeout">接続タイムアウト時間（秒）</param>
+        public DbAccessForMySql(string address, int port, string database, string id, string password, int timeout = 15)
+        {
+            string connectString = $"Server={address};Port={port};Database={database};User ID={id};Password={password};Connect Timeout={timeout};";
+            _sqlConn = new MySqlConnection(connectString);
+            _sqlConn.Open();
+        }
+
+        /// <summary>
         /// トランザクション開始
         /// </summary>
         public void BeginTran()

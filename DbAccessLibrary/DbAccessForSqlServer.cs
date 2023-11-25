@@ -39,6 +39,22 @@ namespace DbAccessLibrary
         }
 
         /// <summary>
+        /// コンストラクタ
+        /// </summary>
+        /// <param name="address">DBサーバのアドレス</param>
+        /// <param name="port">DBサーバのポート番号</param>
+        /// <param name="database">参照するデータベース</param>
+        /// <param name="id">ユーザID</param>
+        /// <param name="password">パスワード</param>
+        /// <param name="timeout">接続タイムアウト時間（秒）</param>
+        public DbAccessForSqlServer(string address, int port, string database, string id, string password, int timeout = 15)
+        {
+            string connectString = $"Data Source={address},{port};Initial Catalog={database};User ID={id};Password={password};Connect Timeout={timeout};";
+            _sqlConn = new SqlConnection(connectString);
+            _sqlConn.Open();
+        }
+
+        /// <summary>
         /// トランザクション開始
         /// </summary>
         public void BeginTran()

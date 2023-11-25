@@ -31,7 +31,7 @@ namespace DbAccessLibrary
         /// <param name="timeout">接続タイムアウト時間（秒）</param>
         public DbAccessForMySql(string address, string database, string id, string password, int timeout = 15)
         {
-            string connectString = $"Data Source={address};Initial Catalog={database};User ID={id};Password={password};Connect Timeout={timeout};";
+            string connectString = $"Server={address};Database={database};User ID={id};Password={password};Connect Timeout={timeout};";
             _sqlConn = new MySqlConnection(connectString);
             _sqlConn.Open();
         }
